@@ -5,7 +5,7 @@ import random
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-points = [[2, 2],[-2, 2],[-2,-2]]
+points = [[0, 2],[-1, -1],[1,-1]]
 
 # load into PyTorch tensors
 p = torch.Tensor(points)
@@ -17,7 +17,7 @@ start = torch.Tensor([0.4,0.6])
 start = start.to(device)
 
 list = []
-rand = random.randint(0,3)
+rand = random.randint(0,2)
 next = (p[rand]+start)/2
 
 for i in range(10000):
