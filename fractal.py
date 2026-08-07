@@ -3,26 +3,25 @@ import numpy as np
 
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-print(device)
 
-# grid for computing image, subdivide the space
-X, Y = np.mgrid[-4.0:4:0.01, -4.0:4:0.01]
+points = [[0, 2],[-1, -1],[1,-1]]
 
 # load into PyTorch tensors
-x = torch.Tensor(X)
-y = torch.Tensor(Y)
+p = torch.Tensor(points)
 
 # transfer to the GPU device
-x = x.to(device)
-y = y.to(device)
+p = p.to(device)
 
-# Compute Gaussian
-z = torch.exp(-(x**2+y**2)/2.0)
+# convert back to coordinates
+x = [x[0] for x in p.cpu().numpy().tolist()]
+y = [y[1] for y in p.cpu().numpy().tolist()]
+print(x)
+print(y)
 
 # plot
 import matplotlib.pyplot as plt
 
-plt.imshow(z.cpu().numpy())
+plt.scatter(x,y)
 
 plt.tight_layout()
 plt.show()
