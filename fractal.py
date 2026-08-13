@@ -3,6 +3,7 @@ import numpy as np
 
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(device)
 
 # Use NumPy to create a line of points on the complex plane (100 points)
 Y, X = np.mgrid[-0.005:0.005:0.01, 0:1:0.01]
